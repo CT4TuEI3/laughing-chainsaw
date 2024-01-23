@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CustomNavBarView: UIView {
+final class MainNavBar: UIView {
     
     // MARK: UI Elements
     
@@ -105,7 +105,7 @@ final class CustomNavBarView: UIView {
 // MARK: - Constraints
 
 private
-extension CustomNavBarView {
+extension MainNavBar {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: 12),

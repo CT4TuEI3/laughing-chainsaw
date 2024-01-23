@@ -82,7 +82,6 @@ final class MainTableViewCell: UITableViewCell {
     }()
     
     
-    
     // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

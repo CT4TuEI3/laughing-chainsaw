@@ -25,8 +25,8 @@ final class MainViewController: UIViewController {
         return imageView
     }()
     
-    private let customNavBar: CustomNavBarView = {
-        let view = CustomNavBarView()
+    private let customNavBar: MainNavBar = {
+        let view = MainNavBar()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -53,6 +53,7 @@ final class MainViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupUI() {
+        navigationController?.delegate = self
         view.addSubviews(backGroundImageView,
                          customNavBar,
                          tableView)
@@ -66,6 +67,17 @@ final class MainViewController: UIViewController {
 }
 
 
+// MARK: - UINavigationControllerDelegate
+
+extension MainViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController,
+                              willShow viewController: UIViewController,
+                              animated: Bool) {
+            navigationController.setNavigationBarHidden(true, animated: true)
+    }
+}
+
+
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -76,6 +88,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellForIndexPath(indexPath) as MainTableViewCell
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailBuilder.createDetailModule()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
