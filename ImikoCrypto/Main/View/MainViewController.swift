@@ -25,6 +25,12 @@ final class MainViewController: UIViewController {
         return imageView
     }()
     
+    private let customNavBar: CustomNavBarView = {
+        let view = CustomNavBarView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -47,7 +53,9 @@ final class MainViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupUI() {
-        view.addSubviews(backGroundImageView, tableView)
+        view.addSubviews(backGroundImageView,
+                         customNavBar,
+                         tableView)
         backGroundImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         setupConstraints()
     }
@@ -85,7 +93,11 @@ private
 extension MainViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            customNavBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            customNavBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+            customNavBar.rightAnchor.constraint(equalTo: view.rightAnchor),
+
+            tableView.topAnchor.constraint(equalTo: customNavBar.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

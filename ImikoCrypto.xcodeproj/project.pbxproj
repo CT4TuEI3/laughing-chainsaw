@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		326B194E2B601000003BB3B9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B194D2B601000003BB3B9 /* Fonts.swift */; };
+		326B19512B6033D2003BB3B9 /* CustomNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B19502B6033D2003BB3B9 /* CustomNavBarView.swift */; };
 		3291E9EF2B5FE3F70052C286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291E9EE2B5FE3F70052C286 /* AppDelegate.swift */; };
 		3291E9F12B5FE3F70052C286 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291E9F02B5FE3F70052C286 /* SceneDelegate.swift */; };
 		3291E9F82B5FE3FA0052C286 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3291E9F72B5FE3FA0052C286 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		326B194D2B601000003BB3B9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		326B19502B6033D2003BB3B9 /* CustomNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBarView.swift; sourceTree = "<group>"; };
 		3291E9EB2B5FE3F70052C286 /* ImikoCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImikoCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3291E9EE2B5FE3F70052C286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3291E9F02B5FE3F70052C286 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		326B194F2B60337D003BB3B9 /* Helperes */ = {
+			isa = PBXGroup;
+			children = (
+				326B19502B6033D2003BB3B9 /* CustomNavBarView.swift */,
+			);
+			path = Helperes;
+			sourceTree = "<group>";
+		};
 		3291E9E22B5FE3F70052C286 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +81,7 @@
 				3291EA022B5FE7900052C286 /* Core */,
 				3291EA032B5FE7960052C286 /* Resourses */,
 				3291EA102B5FEAEB0052C286 /* Extensions */,
+				326B194F2B60337D003BB3B9 /* Helperes */,
 				3291EA062B5FE8210052C286 /* Modules */,
 			);
 			path = ImikoCrypto;
@@ -234,6 +245,7 @@
 				3291E9F12B5FE3F70052C286 /* SceneDelegate.swift in Sources */,
 				3291EA0D2B5FE8450052C286 /* MainBuilder.swift in Sources */,
 				3291EA132B5FEB150052C286 /* UITableViewExtension.swift in Sources */,
+				326B19512B6033D2003BB3B9 /* CustomNavBarView.swift in Sources */,
 				3291EA152B5FEB5E0052C286 /* UIViewExtension.swift in Sources */,
 				326B194E2B601000003BB3B9 /* Fonts.swift in Sources */,
 				3291EA0E2B5FE8450052C286 /* MainPresenter.swift in Sources */,
