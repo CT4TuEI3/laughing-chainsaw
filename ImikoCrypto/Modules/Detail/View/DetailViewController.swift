@@ -52,6 +52,40 @@ final class DetailViewController: UIViewController {
         return button
     }()
     
+    private let amountsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "$ 22 678.48"
+        label.textColor = .mainWhiteText
+        label.font = Typography.regular24
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let changePriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "+ 100.48 (4.32%)"
+        label.textColor = .greenText
+        label.font = Typography.regular14
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let detailDataStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     
     // MARK: - Life cycle
     
@@ -65,7 +99,14 @@ final class DetailViewController: UIViewController {
     
     private func setupUI() {
         mainStackView.addArrangedSubviews(backButton, titleLabel)
-        view.addSubviews(backGroundImageView, mainStackView)
+        
+        amountsStackView.addArrangedSubviews(priceLabel, changePriceLabel)
+        detailDataStackView.addArrangedSubviews(DetailDataView(title: "Market Cap", value: "$518.99b"),
+                                                UIView(),
+                                                DetailDataView(title: "Supply", value: "19.38m"),
+                                                UIView(),
+                                                DetailDataView(title: "Volume 24Hr", value: "$3.52b"))
+        view.addSubviews(backGroundImageView, mainStackView, amountsStackView, detailDataStackView)
         backGroundImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         setupConstraints()
     }
@@ -101,6 +142,15 @@ extension DetailViewController {
             
             backButton.widthAnchor.constraint(equalToConstant: 40),
             backButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            amountsStackView.topAnchor.constraint(equalTo: mainStackView.bottomAnchor, constant: 12),
+            amountsStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            amountsStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            
+            detailDataStackView.heightAnchor.constraint(equalToConstant: 60),
+            detailDataStackView.topAnchor.constraint(equalTo: amountsStackView.bottomAnchor, constant: 12),
+            detailDataStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            detailDataStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
         ])
     }
 }
