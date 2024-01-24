@@ -17,7 +17,7 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Private properties
     
-    private let item: CryptoData?
+    private var item: CryptoData?
     
     
     // MARK: - UI Elements
@@ -88,17 +88,9 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Life cycle
     
-    init(item: CryptoData) {
-        self.item = item
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.getItem()
         setupUI()
     }
     
@@ -106,31 +98,32 @@ final class DetailViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupUI() {
-        mainStackView.addArrangedSubviews(backButton, titleLabel)
-        amountsStackView.addArrangedSubviews(priceLabel, changePriceLabel)
-        detailDataStackView.addArrangedSubviews(DetailDataView(title: LocalizedText.Detail.marketCap,
-                                                               value: item?.marketCapUsd.bigCurrencyFormatter() ?? ""),
-                                                UIView(),
-                                                DetailDataView(title: LocalizedText.Detail.supply,
-                                                               value: item?.maxSupply?.bigCurrencyFormatter(isSupply: true) ?? "nul"),
-                                                UIView(),
-                                                DetailDataView(title: LocalizedText.Detail.Volume24Hr,
-                                                               value: item?.volumeUsd24Hr.bigCurrencyFormatter() ?? ""))
-        view.addSubviews(backGroundImageView,
-                         mainStackView,
-                         amountsStackView,
-                         detailDataStackView)
+        mainStackView.addArrangedSubviews([backButton, titleLabel])
+        amountsStackView.addArrangedSubviews([priceLabel, changePriceLabel])
+        detailDataStackView.addArrangedSubviews([DetailDataView(title: LocalizedText.Detail.marketCap,
+                                                                value: item?.marketCapUsd.bigCurrencyFormatter() ?? ""),
+                                                 UIView(),
+                                                 DetailDataView(title: LocalizedText.Detail.supply,
+                                                                value: item?.maxSupply?.bigCurrencyFormatter(isSupply: true) ?? "nul"),
+                                                 UIView(),
+                                                 DetailDataView(title: LocalizedText.Detail.Volume24Hr,
+                                                                value: item?.volumeUsd24Hr.bigCurrencyFormatter() ?? "")])
+        view.addSubviews([backGroundImageView,
+                          mainStackView,
+                          amountsStackView,
+                          detailDataStackView])
         backGroundImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        updateUI()
         setupConstraints()
     }
     
     private func updateUI() {
-        guard let item = item else { return }
-        titleLabel.text = item.name
-        priceLabel.text = item.priceUsd.currencyFormatting()
-        changePriceLabel.text = item.changePercent24Hr.percentFormatting()
-        changePriceLabel.textColor = item.changePercent24Hr.first == "-" ? .redText : .greenText
+        guard let item else { return }
+        DispatchQueue.main.async {
+            self.titleLabel.text = item.name
+            self.priceLabel.text = item.priceUsd.currencyFormatting()
+            self.changePriceLabel.text = item.changePercent24Hr.percentFormatting()
+            self.changePriceLabel.textColor = item.changePercent24Hr.first == "-" ? .redText : .greenText
+        }
     }
     
     
@@ -148,7 +141,10 @@ final class DetailViewController: UIViewController {
 // MARK: - DetailViewControllerProtocol
 
 extension DetailViewController: DetailViewControllerProtocol {
-    
+    func showItem(_ item: CryptoData) {
+        self.item = item
+        updateUI()
+    }
 }
 
 

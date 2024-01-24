@@ -20,4 +20,9 @@ enum LocalizedText {
         static let supply = "Supply".localized
         static let Volume24Hr = "Volume24Hr".localized
     }
+    
+    enum ErrorAlert {
+        static let close = "Close".localized
+        static let errorTitle = "ErrorTitle".localized
+    }
 }

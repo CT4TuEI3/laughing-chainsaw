@@ -84,8 +84,8 @@ final class MainNavBar: UIView {
     // MARK: - Private methods
     
     private func setupUI() {
-        mainStackView.addArrangedSubviews(titleLabel, searchButton)
-        addSubviews(mainStackView)
+        mainStackView.addArrangedSubviews([titleLabel, searchButton])
+        addSubview(mainStackView)
         setupConstraints()
     }
     
@@ -99,7 +99,7 @@ final class MainNavBar: UIView {
         titleLabel.isHidden = true
         searchButton.isHidden = true
         cancelButton.isHidden = false
-        mainStackView.addArrangedSubviews(searchBar, cancelButton)
+        mainStackView.addArrangedSubviews([searchBar, cancelButton])
     }
     
     @objc
@@ -109,7 +109,7 @@ final class MainNavBar: UIView {
         titleLabel.isHidden = false
         searchButton.isHidden = false
         cancelButton.isHidden = true
-        mainStackView.addArrangedSubviews(titleLabel, searchButton)
+        mainStackView.addArrangedSubviews([titleLabel, searchButton])
     }
 }
 

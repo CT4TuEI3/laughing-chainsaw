@@ -110,11 +110,11 @@ final class MainTableViewCell: UITableViewCell {
     private func setupUI() {
         backgroundColor = .clear
         selectionStyle = .none
-        titlesLabelsStackView.addArrangedSubviews(fullTitleLabel, shortTitleLabel)
-        amountLabelsStackView.addArrangedSubviews(priceAmountLabel, changePriceLabel)
-        dataStackView.addArrangedSubviews(titlesLabelsStackView, amountLabelsStackView)
-        mainStackView.addArrangedSubviews(iconImageView, dataStackView)
-        addSubviews(mainStackView)
+        titlesLabelsStackView.addArrangedSubviews([fullTitleLabel, shortTitleLabel])
+        amountLabelsStackView.addArrangedSubviews([priceAmountLabel, changePriceLabel])
+        dataStackView.addArrangedSubviews([titlesLabelsStackView, amountLabelsStackView])
+        mainStackView.addArrangedSubviews([iconImageView, dataStackView])
+        addSubview(mainStackView)
         setupConstraints()
     }
 }
