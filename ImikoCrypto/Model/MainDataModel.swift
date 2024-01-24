@@ -13,6 +13,7 @@ struct MainDataModel: Decodable {
 }
 
 struct CryptoData: Decodable {
+    let id: String
     let symbol: String
     let name: String
     let priceUsd: String
