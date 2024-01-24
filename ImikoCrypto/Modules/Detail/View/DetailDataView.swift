@@ -21,7 +21,6 @@ final class DetailDataView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Market Cap"
         label.font = Typography.regular12
         label.textColor = .mainWhiteText.withAlphaComponent(0.5)
         return label
@@ -29,7 +28,6 @@ final class DetailDataView: UIView {
     
     private let valueLabel: UILabel = {
         let label = UILabel()
-        label.text = "$518.99b"
         label.font = Typography.regular16
         label.textColor = .mainWhiteText
         return label
