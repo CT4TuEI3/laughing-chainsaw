@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol CustomSearchBarDelegate: AnyObject {
+    func searchText(_ searchText: String)
+    func textDidEndEditing()
+}
+
 final class MainNavBar: UIView {
+    
+    weak var delegate: CustomSearchBarDelegate?
+    
     
     // MARK: UI Elements
     
@@ -52,6 +60,10 @@ final class MainNavBar: UIView {
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
+        searchBar.barStyle = .black
+        searchBar.placeholder = "Search"
+        searchBar.keyboardType = .alphabet
+        searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
@@ -98,6 +110,19 @@ final class MainNavBar: UIView {
         searchButton.isHidden = false
         cancelButton.isHidden = true
         mainStackView.addArrangedSubviews(titleLabel, searchButton)
+    }
+}
+
+
+// MARK: - UISearchBarDelegate
+
+extension MainNavBar: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        delegate?.searchText(searchText)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        delegate?.textDidEndEditing()
     }
 }
 

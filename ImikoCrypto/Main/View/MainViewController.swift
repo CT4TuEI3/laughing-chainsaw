@@ -18,6 +18,7 @@ final class MainViewController: UIViewController {
     // MARK: - Private properties
     
     private var tableViewDataSource: [CryptoData] = []
+    private var filteredDataSource: [CryptoData] = []
     private var isNeedUpdate = true
     
     
@@ -28,8 +29,9 @@ final class MainViewController: UIViewController {
         return imageView
     }()
     
-    private let customNavBar: MainNavBar = {
+    private lazy var customNavBar: MainNavBar = {
         let view = MainNavBar()
+        view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -40,6 +42,7 @@ final class MainViewController: UIViewController {
         tableView.dataSource = self
         tableView.registerClass(MainTableViewCell.self)
         tableView.backgroundColor = .clear
+        tableView.keyboardDismissMode = .onDrag
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -86,25 +89,25 @@ extension MainViewController: UINavigationControllerDelegate {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableViewDataSource.count
+        filteredDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellForIndexPath(indexPath) as MainTableViewCell
-        let item = tableViewDataSource[indexPath.row]
+        let item = filteredDataSource[indexPath.row]
         cell.configure(item)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = tableViewDataSource[indexPath.row]
+        let item = filteredDataSource[indexPath.row]
         let vc = DetailBuilder.createDetailModule(item: item)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == tableViewDataSource.count - 3 && isNeedUpdate {
-            presenter?.getData(offset: tableViewDataSource.count)
+        if indexPath.row == filteredDataSource.count - 3 && isNeedUpdate {
+            presenter?.getData(offset: filteredDataSource.count)
         }
     }
 }
@@ -115,6 +118,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: MainViewControllerProtocol {
     func setDataSource(_ data: [CryptoData]) {
         tableViewDataSource.append(contentsOf: data)
+        filteredDataSource = tableViewDataSource
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -122,6 +126,31 @@ extension MainViewController: MainViewControllerProtocol {
     
     func stopUpdating() {
         isNeedUpdate = false
+    }
+}
+
+
+// MARK: - CustomSearchBarDelegate
+
+extension MainViewController: CustomSearchBarDelegate {
+    func searchText(_ searchText: String) {
+        filteredDataSource = []
+        if searchText == "" {
+            filteredDataSource = tableViewDataSource
+            tableView.reloadData()
+        }
+        for word in tableViewDataSource {
+            if word.symbol.lowercased().contains(searchText.lowercased()) ||
+                word.id.lowercased().contains(searchText.lowercased()) {
+                filteredDataSource.append(word)
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    func textDidEndEditing() {
+        filteredDataSource = tableViewDataSource
+        tableView.reloadData()
     }
 }
 
