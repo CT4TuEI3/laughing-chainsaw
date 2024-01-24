@@ -73,6 +73,17 @@ final class MainViewController: UIViewController {
         setupConstraints()
     }
     
+    private func createActivityIndicatorFooter() -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.style = .large
+        activityIndicator.color = .white
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        return view
+    }
+    
     
     // MARK: - Actions
     
@@ -117,6 +128,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == filteredDataSource.count - 3 && isNeedUpdate {
             presenter?.getData(offset: filteredDataSource.count)
+            DispatchQueue.main.async {
+                self.tableView.tableFooterView = self.createActivityIndicatorFooter()
+            }
         }
     }
 }
@@ -131,6 +145,7 @@ extension MainViewController: MainViewControllerProtocol {
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
+            self.tableView.tableFooterView = nil
         }
     }
     

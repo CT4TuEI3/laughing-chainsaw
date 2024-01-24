@@ -36,7 +36,6 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = Typography.expandedSemibold24
         label.textColor = .mainWhiteText
-        label.text = "Bitcoin"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -64,7 +63,6 @@ final class DetailViewController: UIViewController {
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "$ 22 678.48"
         label.textColor = .mainWhiteText
         label.font = Typography.regular24
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +71,6 @@ final class DetailViewController: UIViewController {
     
     private let changePriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "+ 100.48 (4.32%)"
         label.textColor = .greenText
         label.font = Typography.regular14
         label.translatesAutoresizingMaskIntoConstraints = false

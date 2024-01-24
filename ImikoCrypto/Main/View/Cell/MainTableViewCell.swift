@@ -51,7 +51,6 @@ final class MainTableViewCell: UITableViewCell {
     
     private let fullTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Bitcoin"
         label.font = Typography.regular16
         label.textColor = .mainWhiteText
         return label
@@ -59,7 +58,6 @@ final class MainTableViewCell: UITableViewCell {
     
     private let shortTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "BTC"
         label.font = Typography.regular14
         label.textColor = .mainWhiteText.withAlphaComponent(0.5)
         return label
@@ -67,7 +65,6 @@ final class MainTableViewCell: UITableViewCell {
     
     private let priceAmountLabel: UILabel = {
         let label = UILabel()
-        label.text = "$ 22 678.48"
         label.font = Typography.regular16
         label.textColor = .mainWhiteText
         label.textAlignment = .right
@@ -76,7 +73,6 @@ final class MainTableViewCell: UITableViewCell {
     
     private let changePriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "+ 4.32%"
         label.font = Typography.regular14
         label.textColor = .greenText
         label.textAlignment = .right
@@ -99,7 +95,8 @@ final class MainTableViewCell: UITableViewCell {
     // MARK: - Configure
     
     func configure(_ item: CryptoData) {
-        iconImageView.image = UIImage(named: item.symbol.lowercased())
+        let image = UIImage(named: item.symbol.lowercased())
+        iconImageView.image = image ?? UIImage(systemName: "circle.fill")
         fullTitleLabel.text = item.name
         shortTitleLabel.text = item.symbol
         priceAmountLabel.text = item.priceUsd.currencyFormatting()
