@@ -24,10 +24,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - UI Elements
     
-    private let backGroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "background"))
-        return imageView
-    }()
+    private let backGroundImageView = UIImageView(image: UIImage(named: "background"))
     
     private lazy var customNavBar: MainNavBar = {
         let view = MainNavBar()
@@ -47,6 +44,13 @@ final class MainViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.tintColor = .white
+        control.addTarget(self, action: #selector(self.refreshData(_:)), for: .valueChanged)
+        return control
+    }()
+    
     
     // MARK: - Life cycle
     
@@ -61,6 +65,7 @@ final class MainViewController: UIViewController {
     
     private func setupUI() {
         navigationController?.delegate = self
+        tableView.addSubview(refreshControl)
         view.addSubviews(backGroundImageView,
                          customNavBar,
                          tableView)
@@ -71,6 +76,10 @@ final class MainViewController: UIViewController {
     
     // MARK: - Actions
     
+    @objc
+    private func refreshData(_ sender: AnyObject) {
+        presenter?.getData(offset: 0)
+    }
 }
 
 
@@ -120,12 +129,16 @@ extension MainViewController: MainViewControllerProtocol {
         tableViewDataSource.append(contentsOf: data)
         filteredDataSource = tableViewDataSource
         DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }
     }
     
     func stopUpdating() {
         isNeedUpdate = false
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+        }
     }
 }
 
