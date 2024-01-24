@@ -52,7 +52,7 @@ final class DetailDataView: UIView {
     // MARK: - Private methods
     
     private func setupUI() {
-        stackView.addArrangedSubviews(titleLabel, valueLabel)
+        stackView.addArrangedSubviews([titleLabel, valueLabel])
         addSubview(stackView)
         setupConstraints()
     }

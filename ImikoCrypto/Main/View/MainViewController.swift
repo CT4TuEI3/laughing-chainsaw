@@ -66,9 +66,9 @@ final class MainViewController: UIViewController {
     private func setupUI() {
         navigationController?.delegate = self
         tableView.addSubview(refreshControl)
-        view.addSubviews(backGroundImageView,
+        view.addSubviews([backGroundImageView,
                          customNavBar,
-                         tableView)
+                         tableView])
         backGroundImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         setupConstraints()
     }
@@ -154,6 +154,10 @@ extension MainViewController: MainViewControllerProtocol {
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    func showErrorAlert(_ message: String) {
+        showSystemErrorAlert(message: message)
     }
 }
 
