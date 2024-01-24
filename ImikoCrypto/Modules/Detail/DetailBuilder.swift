@@ -9,8 +9,8 @@
 import UIKit
 
 final class DetailBuilder {
-    static func createDetailModule() -> UIViewController {
-        let view = DetailViewController()
+    static func createDetailModule(item:  CryptoData) -> UIViewController {
+        let view = DetailViewController(item: item)
         let presenter = DetailPresenter(view: view)
         view.presenter = presenter
         return view

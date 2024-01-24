@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "2give.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
