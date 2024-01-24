@@ -94,6 +94,16 @@ final class MainTableViewCell: UITableViewCell {
     }
     
     
+    // MARK: - Configure
+    
+    func configure(_ item: CryptoData) {
+        fullTitleLabel.text = item.name
+        shortTitleLabel.text = item.symbol
+        priceAmountLabel.text = item.priceUsd
+        changePriceLabel.text = item.changePercent24Hr
+    }
+    
+    
     // MARK: - Private methods
     
     private func setupUI() {
