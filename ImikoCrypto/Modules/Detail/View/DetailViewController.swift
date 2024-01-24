@@ -17,6 +17,8 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Private properties
     
+    private let item: CryptoData?
+    
     
     // MARK: - UI Elements
     
@@ -89,6 +91,15 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Life cycle
     
+    init(item: CryptoData) {
+        self.item = item
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -99,16 +110,30 @@ final class DetailViewController: UIViewController {
     
     private func setupUI() {
         mainStackView.addArrangedSubviews(backButton, titleLabel)
-        
         amountsStackView.addArrangedSubviews(priceLabel, changePriceLabel)
-        detailDataStackView.addArrangedSubviews(DetailDataView(title: "Market Cap", value: "$518.99b"),
+        detailDataStackView.addArrangedSubviews(DetailDataView(title: "Market Cap",
+                                                               value: item?.marketCapUsd.bigCurrencyFormatter() ?? ""),
                                                 UIView(),
-                                                DetailDataView(title: "Supply", value: "19.38m"),
+                                                DetailDataView(title: "Supply",
+                                                               value: item?.maxSupply?.bigCurrencyFormatter(isSupply: true) ?? "nul"),
                                                 UIView(),
-                                                DetailDataView(title: "Volume 24Hr", value: "$3.52b"))
-        view.addSubviews(backGroundImageView, mainStackView, amountsStackView, detailDataStackView)
+                                                DetailDataView(title: "Volume 24Hr",
+                                                               value: item?.volumeUsd24Hr.bigCurrencyFormatter() ?? ""))
+        view.addSubviews(backGroundImageView,
+                         mainStackView,
+                         amountsStackView,
+                         detailDataStackView)
         backGroundImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        updateUI()
         setupConstraints()
+    }
+    
+    private func updateUI() {
+        guard let item = item else { return }
+        titleLabel.text = item.name
+        priceLabel.text = item.priceUsd.currencyFormatting()
+        changePriceLabel.text = item.changePercent24Hr.percentFormatting()
+        changePriceLabel.textColor = item.changePercent24Hr.first == "-" ? .redText : .greenText
     }
     
     

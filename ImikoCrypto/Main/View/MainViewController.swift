@@ -95,7 +95,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailBuilder.createDetailModule()
+        let item = tableViewDataSource[indexPath.row]
+        let vc = DetailBuilder.createDetailModule(item: item)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

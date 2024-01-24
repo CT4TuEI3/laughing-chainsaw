@@ -42,7 +42,7 @@ final class MainTableViewCell: UITableViewCell {
     }()
     
     private let iconImageView: UIImageView = {
-        let icon = UIImageView(image: UIImage(named: "btc"))
+        let icon = UIImageView()
         icon.contentMode = .scaleAspectFit
         icon.tintColor = .white
         icon.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +70,7 @@ final class MainTableViewCell: UITableViewCell {
         label.text = "$ 22 678.48"
         label.font = Typography.regular16
         label.textColor = .mainWhiteText
+        label.textAlignment = .right
         return label
     }()
     
@@ -78,6 +79,7 @@ final class MainTableViewCell: UITableViewCell {
         label.text = "+ 4.32%"
         label.font = Typography.regular14
         label.textColor = .greenText
+        label.textAlignment = .right
         return label
     }()
     
@@ -97,10 +99,12 @@ final class MainTableViewCell: UITableViewCell {
     // MARK: - Configure
     
     func configure(_ item: CryptoData) {
+        iconImageView.image = UIImage(named: item.symbol.lowercased())
         fullTitleLabel.text = item.name
         shortTitleLabel.text = item.symbol
-        priceAmountLabel.text = item.priceUsd
-        changePriceLabel.text = item.changePercent24Hr
+        priceAmountLabel.text = item.priceUsd.currencyFormatting()
+        changePriceLabel.text = item.changePercent24Hr.percentFormatting()
+        changePriceLabel.textColor = item.changePercent24Hr.first == "-" ? .redText : .greenText
     }
     
     
@@ -159,4 +163,3 @@ extension MainTableViewCell {
         ])
     }
 }
-
