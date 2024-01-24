@@ -31,7 +31,7 @@ final class MainNavBar: UIView {
         let label = UILabel()
         label.font = Typography.expandedSemibold24
         label.textColor = .mainWhiteText
-        label.text = "Trending Coins"
+        label.text = LocalizedText.MainVC.trendingCoins
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -50,7 +50,7 @@ final class MainNavBar: UIView {
     
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("cancel", for: .normal)
+        button.setTitle(LocalizedText.MainVC.cancel, for: .normal)
         button.setTitleColor(.mainWhiteText.withAlphaComponent(0.5), for: .normal)
         button.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +61,7 @@ final class MainNavBar: UIView {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
         searchBar.barStyle = .black
-        searchBar.placeholder = "Search"
+        searchBar.placeholder = LocalizedText.MainVC.search
         searchBar.keyboardType = .alphabet
         searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false

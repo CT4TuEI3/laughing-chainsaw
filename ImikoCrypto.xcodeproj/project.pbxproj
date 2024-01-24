@@ -13,6 +13,8 @@
 		326B195B2B60478E003BB3B9 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B19572B60478E003BB3B9 /* DetailPresenter.swift */; };
 		326B195C2B60478E003BB3B9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B19592B60478E003BB3B9 /* DetailViewController.swift */; };
 		326B19602B60C623003BB3B9 /* DetailDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B195F2B60C623003BB3B9 /* DetailDataView.swift */; };
+		3271A45C2B616A1B0041EEF2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3271A45B2B616A1B0041EEF2 /* Localizable.xcstrings */; };
+		3271A45E2B616B740041EEF2 /* LocalizedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271A45D2B616B740041EEF2 /* LocalizedText.swift */; };
 		327BDCFD2B60F6120077E05E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BDCFC2B60F6120077E05E /* NetworkService.swift */; };
 		327BDD002B60F70E0077E05E /* MainDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BDCFF2B60F70E0077E05E /* MainDataModel.swift */; };
 		327BDD022B61036C0077E05E /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BDD012B61036C0077E05E /* Configure.swift */; };
@@ -37,6 +39,8 @@
 		326B19572B60478E003BB3B9 /* DetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		326B19592B60478E003BB3B9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		326B195F2B60C623003BB3B9 /* DetailDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataView.swift; sourceTree = "<group>"; };
+		3271A45B2B616A1B0041EEF2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3271A45D2B616B740041EEF2 /* LocalizedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedText.swift; sourceTree = "<group>"; };
 		327BDCFC2B60F6120077E05E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		327BDCFF2B60F70E0077E05E /* MainDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataModel.swift; sourceTree = "<group>"; };
 		327BDD012B61036C0077E05E /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
@@ -102,6 +106,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		3271A45A2B616A010041EEF2 /* Localiztion */ = {
+			isa = PBXGroup;
+			children = (
+				3271A45B2B616A1B0041EEF2 /* Localizable.xcstrings */,
+				3271A45D2B616B740041EEF2 /* LocalizedText.swift */,
+			);
+			path = Localiztion;
+			sourceTree = "<group>";
+		};
 		327BDCFB2B60F5F80077E05E /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +161,7 @@
 				3291EA022B5FE7900052C286 /* Core */,
 				3291EA032B5FE7960052C286 /* Resourses */,
 				3291EA102B5FEAEB0052C286 /* Extensions */,
+				3271A45A2B616A010041EEF2 /* Localiztion */,
 				326B194F2B60337D003BB3B9 /* Helperes */,
 				327BDCFB2B60F5F80077E05E /* Service */,
 				327BDCFE2B60F6660077E05E /* Model */,
@@ -283,6 +297,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 3291E9E22B5FE3F70052C286;
 			productRefGroup = 3291E9EC2B5FE3F70052C286 /* Products */;
@@ -301,6 +316,7 @@
 			files = (
 				3291E9FB2B5FE3FA0052C286 /* LaunchScreen.storyboard in Resources */,
 				3291E9F82B5FE3FA0052C286 /* Assets.xcassets in Resources */,
+				3271A45C2B616A1B0041EEF2 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +337,7 @@
 				326B19602B60C623003BB3B9 /* DetailDataView.swift in Sources */,
 				3291EA152B5FEB5E0052C286 /* UIViewExtension.swift in Sources */,
 				327BDD002B60F70E0077E05E /* MainDataModel.swift in Sources */,
+				3271A45E2B616B740041EEF2 /* LocalizedText.swift in Sources */,
 				326B195A2B60478E003BB3B9 /* DetailBuilder.swift in Sources */,
 				327BDCFD2B60F6120077E05E /* NetworkService.swift in Sources */,
 				326B194E2B601000003BB3B9 /* Fonts.swift in Sources */,

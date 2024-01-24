@@ -111,13 +111,13 @@ final class DetailViewController: UIViewController {
     private func setupUI() {
         mainStackView.addArrangedSubviews(backButton, titleLabel)
         amountsStackView.addArrangedSubviews(priceLabel, changePriceLabel)
-        detailDataStackView.addArrangedSubviews(DetailDataView(title: "Market Cap",
+        detailDataStackView.addArrangedSubviews(DetailDataView(title: LocalizedText.Detail.marketCap,
                                                                value: item?.marketCapUsd.bigCurrencyFormatter() ?? ""),
                                                 UIView(),
-                                                DetailDataView(title: "Supply",
+                                                DetailDataView(title: LocalizedText.Detail.supply,
                                                                value: item?.maxSupply?.bigCurrencyFormatter(isSupply: true) ?? "nul"),
                                                 UIView(),
-                                                DetailDataView(title: "Volume 24Hr",
+                                                DetailDataView(title: LocalizedText.Detail.Volume24Hr,
                                                                value: item?.volumeUsd24Hr.bigCurrencyFormatter() ?? ""))
         view.addSubviews(backGroundImageView,
                          mainStackView,
