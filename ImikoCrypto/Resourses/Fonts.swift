@@ -23,11 +23,19 @@ extension Typography {
         Typography.expandedSemibold(of: 24)
     }
     
+    static var regular12: UIFont {
+        Typography.regular(of: 12)
+    }
+    
     static var regular14: UIFont {
         Typography.regular(of: 14)
     }
     
     static var regular16: UIFont {
         Typography.regular(of: 16)
+    }
+    
+    static var regular24: UIFont {
+        Typography.regular(of: 24)
     }
 }
