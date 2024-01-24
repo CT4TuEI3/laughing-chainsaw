@@ -13,6 +13,9 @@
 		326B195B2B60478E003BB3B9 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B19572B60478E003BB3B9 /* DetailPresenter.swift */; };
 		326B195C2B60478E003BB3B9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B19592B60478E003BB3B9 /* DetailViewController.swift */; };
 		326B19602B60C623003BB3B9 /* DetailDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B195F2B60C623003BB3B9 /* DetailDataView.swift */; };
+		327BDCFD2B60F6120077E05E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BDCFC2B60F6120077E05E /* NetworkService.swift */; };
+		327BDD002B60F70E0077E05E /* MainDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BDCFF2B60F70E0077E05E /* MainDataModel.swift */; };
+		327BDD022B61036C0077E05E /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BDD012B61036C0077E05E /* Configure.swift */; };
 		3291E9EF2B5FE3F70052C286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291E9EE2B5FE3F70052C286 /* AppDelegate.swift */; };
 		3291E9F12B5FE3F70052C286 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291E9F02B5FE3F70052C286 /* SceneDelegate.swift */; };
 		3291E9F82B5FE3FA0052C286 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3291E9F72B5FE3FA0052C286 /* Assets.xcassets */; };
@@ -33,6 +36,9 @@
 		326B19572B60478E003BB3B9 /* DetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		326B19592B60478E003BB3B9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		326B195F2B60C623003BB3B9 /* DetailDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataView.swift; sourceTree = "<group>"; };
+		327BDCFC2B60F6120077E05E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		327BDCFF2B60F70E0077E05E /* MainDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataModel.swift; sourceTree = "<group>"; };
+		327BDD012B61036C0077E05E /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
 		3291E9EB2B5FE3F70052C286 /* ImikoCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImikoCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3291E9EE2B5FE3F70052C286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3291E9F02B5FE3F70052C286 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +100,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		327BDCFB2B60F5F80077E05E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				327BDCFC2B60F6120077E05E /* NetworkService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		327BDCFE2B60F6660077E05E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				327BDCFF2B60F70E0077E05E /* MainDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3291E9E22B5FE3F70052C286 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +139,8 @@
 				3291EA032B5FE7960052C286 /* Resourses */,
 				3291EA102B5FEAEB0052C286 /* Extensions */,
 				326B194F2B60337D003BB3B9 /* Helperes */,
+				327BDCFB2B60F5F80077E05E /* Service */,
+				327BDCFE2B60F6660077E05E /* Model */,
 				3291EA062B5FE8210052C286 /* Modules */,
 			);
 			path = ImikoCrypto;
@@ -128,6 +152,7 @@
 				3291E9EE2B5FE3F70052C286 /* AppDelegate.swift */,
 				3291E9F02B5FE3F70052C286 /* SceneDelegate.swift */,
 				3291E9FC2B5FE3FA0052C286 /* Info.plist */,
+				327BDD012B61036C0077E05E /* Configure.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -284,9 +309,12 @@
 				326B19512B6033D2003BB3B9 /* MainNavBar.swift in Sources */,
 				326B19602B60C623003BB3B9 /* DetailDataView.swift in Sources */,
 				3291EA152B5FEB5E0052C286 /* UIViewExtension.swift in Sources */,
+				327BDD002B60F70E0077E05E /* MainDataModel.swift in Sources */,
 				326B195A2B60478E003BB3B9 /* DetailBuilder.swift in Sources */,
+				327BDCFD2B60F6120077E05E /* NetworkService.swift in Sources */,
 				326B194E2B601000003BB3B9 /* Fonts.swift in Sources */,
 				326B195B2B60478E003BB3B9 /* DetailPresenter.swift in Sources */,
+				327BDD022B61036C0077E05E /* Configure.swift in Sources */,
 				3291EA0E2B5FE8450052C286 /* MainPresenter.swift in Sources */,
 				3291EA0F2B5FE8450052C286 /* MainViewController.swift in Sources */,
 				326B195C2B60478E003BB3B9 /* DetailViewController.swift in Sources */,

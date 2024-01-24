@@ -17,6 +17,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - Private properties
     
+    private var tableViewDataSource: [CryptoData] = []
     
     // MARK: - UI Elements
     
@@ -46,6 +47,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.getData()
         setupUI()
     }
     
@@ -82,11 +84,13 @@ extension MainViewController: UINavigationControllerDelegate {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        tableViewDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellForIndexPath(indexPath) as MainTableViewCell
+        let item = tableViewDataSource[indexPath.row]
+        cell.configure(item)
         return cell
     }
     
@@ -100,7 +104,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - MainViewControllerProtocol
 
 extension MainViewController: MainViewControllerProtocol {
-    
+    func setDataSource(_ data: [CryptoData]) {
+        tableViewDataSource = data
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 
