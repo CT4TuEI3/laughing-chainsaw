@@ -10,10 +10,11 @@ import Foundation
 
 protocol MainViewControllerProtocol: AnyObject {
     func setDataSource(_ data: [CryptoData])
+    func stopUpdating()
 }
 
 protocol MainPresenterProtocol {
-    func getData()
+    func getData(offset: Int)
 }
 
 final class MainPresenter {
@@ -22,6 +23,7 @@ final class MainPresenter {
     
     private weak var view: MainViewControllerProtocol?
     private let networkService: NetworkServiceProtocol?
+    private var lastId: String?
     
     
     // MARK: - Lifecycle
@@ -36,9 +38,16 @@ final class MainPresenter {
 // MARK: - MainPresenterProtocol
 
 extension MainPresenter: MainPresenterProtocol {
-    func getData() {
-        networkService?.getData(completion: { data in
-            self.view?.setDataSource(data.data)
+        
+    func getData(offset: Int) {
+        networkService?.getData(offset: offset, limit: 10, completion: { [weak self] response in
+            guard let self else { return }
+            if response.data.last?.id != self.lastId {
+                self.view?.setDataSource(response.data)
+            } else {
+                self.view?.stopUpdating()
+            }
+            self.lastId = response.data.last?.id
         })
     }
 }

@@ -1,4 +1,4 @@
-// 
+//
 //  MainViewController.swift
 //  ImikoCrypto
 //
@@ -18,6 +18,8 @@ final class MainViewController: UIViewController {
     // MARK: - Private properties
     
     private var tableViewDataSource: [CryptoData] = []
+    private var isNeedUpdate = true
+    
     
     // MARK: - UI Elements
     
@@ -47,7 +49,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.getData()
+        presenter?.getData(offset: 0)
         setupUI()
     }
     
@@ -75,7 +77,7 @@ extension MainViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController,
                               willShow viewController: UIViewController,
                               animated: Bool) {
-            navigationController.setNavigationBarHidden(true, animated: true)
+        navigationController.setNavigationBarHidden(true, animated: true)
     }
 }
 
@@ -99,6 +101,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = DetailBuilder.createDetailModule(item: item)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == tableViewDataSource.count - 3 && isNeedUpdate {
+            presenter?.getData(offset: tableViewDataSource.count)
+        }
+    }
 }
 
 
@@ -106,10 +114,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainViewController: MainViewControllerProtocol {
     func setDataSource(_ data: [CryptoData]) {
-        tableViewDataSource = data
+        tableViewDataSource.append(contentsOf: data)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func stopUpdating() {
+        isNeedUpdate = false
     }
 }
 
@@ -123,7 +135,7 @@ extension MainViewController {
             customNavBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             customNavBar.leftAnchor.constraint(equalTo: view.leftAnchor),
             customNavBar.rightAnchor.constraint(equalTo: view.rightAnchor),
-
+            
             tableView.topAnchor.constraint(equalTo: customNavBar.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),

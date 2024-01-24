@@ -9,5 +9,5 @@
 import Foundation
 
 enum Configure {
-    static let apiCall = "https://api.coincap.io/v2/assets"
+    static let baseURL = "https://api.coincap.io/v2/assets"
 }

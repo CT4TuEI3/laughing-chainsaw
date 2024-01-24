@@ -9,12 +9,12 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func getData(completion: @escaping (MainDataModel) -> Void)
+    func getData(offset: Int, limit: Int, completion: @escaping (MainDataModel) -> Void)
 }
 
 final class NetworkService: NetworkServiceProtocol {
-    func getData(completion: @escaping (MainDataModel) -> Void) {
-        guard let url = URL(string: Configure.apiCall) else { return }
+    func getData(offset: Int, limit: Int, completion: @escaping (MainDataModel) -> Void) {
+        guard let url = URL(string: Configure.baseURL + "/?offset=\(offset)&limit=\(limit)") else { return }
         let urlRequest = URLRequest(url: url)
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data else { fatalError() }
@@ -22,7 +22,7 @@ final class NetworkService: NetworkServiceProtocol {
                 let currentData = try JSONDecoder().decode(MainDataModel.self, from: data)
                 completion(currentData)
             } catch {
-                print(error.localizedDescription)
+                print("👺Error parsing")
             }
         }.resume()
     }
